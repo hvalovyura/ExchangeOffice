@@ -10,6 +10,6 @@
         <Label Content="Good afternoon" Margin="273,24,211,325" FontSize="25"/>
         <Button Content="Change prices" Margin="274,132,360,248" Click="Button_Click"/>
         <Button Content="View prices history" Margin="273,217,362,163" Click="Button_Click_1"/>
-        <Button Content="View operations history" Margin="274,302,361,78"/>
+        <Button Content="View operations history" Margin="274,302,361,78" Click="Button_Click_2"/>
     </Grid>
 </Window>

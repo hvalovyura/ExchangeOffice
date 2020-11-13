@@ -34,5 +34,11 @@ namespace ExchangeOfficeApp.EmployeePages
             ViewPricesHistoryPage viewPricesHistoryPage = new ViewPricesHistoryPage();
             viewPricesHistoryPage.Show();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ViewAllReceiptsPage viewAllReceiptsPage = new ViewAllReceiptsPage();
+            viewAllReceiptsPage.Show();
+        }
     }
 }
