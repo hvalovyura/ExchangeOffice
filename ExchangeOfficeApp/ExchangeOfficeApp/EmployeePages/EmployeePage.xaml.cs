@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExchangeOfficeApp.EmployeePages.EmployeeMainOperations;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,18 @@ namespace ExchangeOfficeApp.EmployeePages
         public EmployeePage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ChangingPricePage changingPricePage = new ChangingPricePage();
+            changingPricePage.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ViewPricesHistoryPage viewPricesHistoryPage = new ViewPricesHistoryPage();
+            viewPricesHistoryPage.Show();
         }
     }
 }

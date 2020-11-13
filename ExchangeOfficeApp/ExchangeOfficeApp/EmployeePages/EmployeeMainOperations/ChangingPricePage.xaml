@@ -1,0 +1,18 @@
+﻿<Window x:Class="ExchangeOfficeApp.EmployeePages.EmployeeMainOperations.ChangingPricePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExchangeOfficeApp.EmployeePages.EmployeeMainOperations"
+        mc:Ignorable="d"
+        Title="ChangingPricePage" Height="450" Width="800">
+    <Grid>
+        <Label Content="Old buy price" Margin="202,10,309,371" FontSize="25"/>
+        <Label Content="Old sell price" Margin="202,63,309,318" FontSize="25"/>
+        <Label Content="New buy price" Margin="132,149,472,227" FontSize="25"/>
+        <Label Content="New sell price" Margin="132,284,472,75" FontSize="25"/>
+        <TextBox Text="" TextWrapping="Wrap" Margin="400,154,111,231"/>
+        <TextBox Text="" TextWrapping="Wrap" Margin="400,284,111,98"/>
+        <Button Content="Submit" Margin="202,367,250,10" FontSize="25" Click="Button_Click"/>
+    </Grid>
+</Window>
