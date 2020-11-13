@@ -1,0 +1,16 @@
+﻿<Window x:Class="ExchangeOfficeApp.CustomerPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExchangeOfficeApp"
+        mc:Ignorable="d"
+        Title="CustomerPage" Height="450" Width="800">
+    <Grid>
+        <Label Content="Good afternoon" Margin="292,10,292,363" FontSize="25"/>
+        <Label Content="Chouse operation" Margin="290,71,292,297" RenderTransformOrigin="0.5,0.5" FontSize="25"/>
+        <Button Content="Buy" FontSize="25" Margin="114,199,439,161" Click="Button_Click"/>
+        <Button Content="Sell" FontSize="25" Margin="437,199,122,161" Click="Button_Click_1"/>
+
+    </Grid>
+</Window>

@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label Content="Welcome to exchange office" Margin="207,27,265,353" FontSize="25"/>
-        <Button Content="Login as employee" Margin="153,206,481,174"/>
-        <Button Content="Buy/Sell currency" Margin="400,206,235,174"/>
+        <Label Content="Welcome to exchange office" Margin="207,27,129,322" FontSize="25"/>
+        <Button Content="Login as employee" Margin="153,206,481,174" Click="Button_Click"/>
+        <Button Content="Buy/Sell currency" Margin="400,206,235,174" Click="Button_Click_1"/>
 
     </Grid>
 </Window>
