@@ -12,7 +12,7 @@
         <Label Content="Password" Margin="132,284,472,75" FontSize="25"/>
         <TextBox Text="" TextWrapping="Wrap" Margin="400,154,111,231"/>
         <TextBox Text="" TextWrapping="Wrap" Margin="400,284,111,98"/>
-        <Button Content="Login" Margin="174,359,226,18" FontSize="20"/>
+        <Button Content="Login" Margin="174,359,226,18" FontSize="20" Click="Button_Click"/>
 
     </Grid>
 </Window>

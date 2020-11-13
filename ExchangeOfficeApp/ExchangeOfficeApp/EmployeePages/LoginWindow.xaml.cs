@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExchangeOfficeApp.EmployeePages;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,13 @@ namespace ExchangeOfficeApp
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeePage employeePage = new EmployeePage();
+            employeePage.Show();
+            this.Close();
         }
     }
 }
