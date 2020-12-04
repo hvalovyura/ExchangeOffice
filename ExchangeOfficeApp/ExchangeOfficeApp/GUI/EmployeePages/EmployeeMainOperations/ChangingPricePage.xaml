@@ -11,8 +11,8 @@
         <Label Content="Old sell price" Margin="202,63,309,290" FontSize="25"/>
         <Label Content="New buy price" Margin="132,149,453,227" FontSize="25"/>
         <Label Content="New sell price" Margin="132,284,453,75" FontSize="25"/>
-        <TextBox Text="" TextWrapping="Wrap" Margin="400,154,111,231"/>
-        <TextBox Text="" TextWrapping="Wrap" Margin="400,284,111,98"/>
+        <TextBox x:Name="NewBuyPriceTextBox" Text="" TextWrapping="Wrap" Margin="400,154,111,231"/>
+        <TextBox x:Name="NewSellPriceTextBox" Text="" TextWrapping="Wrap" Margin="400,284,111,98"/>
         <Button Content="Submit" Margin="202,367,250,10" FontSize="25" Click="Button_Click"/>
     </Grid>
 </Window>
