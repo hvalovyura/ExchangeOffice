@@ -4,8 +4,9 @@ using System.Text;
 
 namespace ExchangeOfficeApp.Models
 {
-    class Receipt
+    public class Receipt
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public double ClientMoney { get; set; }
