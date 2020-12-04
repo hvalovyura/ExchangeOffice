@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ExchangeOfficeApp.Enums
 {
-    enum CurrencyType
+    public enum CurrencyType
     {
         [Description("Доллар США")] USD = 0,
         [Description("Евро")] EUR,

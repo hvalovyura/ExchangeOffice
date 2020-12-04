@@ -10,6 +10,7 @@ namespace ExchangeOfficeApp.Repository
     {
 
         public DbSet<Receipt> Receipts { get; set; }
+        public DbSet<ChangePrice> ChangingPrices { get; set; }
 
         public ReceiptContext()
         {
@@ -17,7 +18,7 @@ namespace ExchangeOfficeApp.Repository
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=helloappdb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ExchangeOfficeDb;Trusted_Connection=True;");
 
             base.OnConfiguring(optionsBuilder);
         }
