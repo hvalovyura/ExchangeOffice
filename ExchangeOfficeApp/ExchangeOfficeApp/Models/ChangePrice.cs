@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ExchangeOfficeApp.Models
 {
-    public class Price
+    public class ChangePrice
     {
         public int Id { get; set; }
         public CurrencyType CurrencyType { get; set; }
