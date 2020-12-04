@@ -24,7 +24,22 @@ namespace ExchangeOfficeApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
             this.Close();
+        }
+
+
+        private void CountInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                var count = Convert.ToInt32(this.CountInput.Text);
+                this.PriceInput.Text = $"{count * 100}";
+            }
+            catch(Exception)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

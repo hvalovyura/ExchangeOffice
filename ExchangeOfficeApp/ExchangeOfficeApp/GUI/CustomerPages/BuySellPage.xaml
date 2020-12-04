@@ -10,8 +10,8 @@
         <Label Content="Buy/Sell page" Margin="285,10,226,346" FontSize="25"/>
         <Label Content="Count" Margin="174,149,472,227" FontSize="25"/>
         <Label Content="Price" Margin="174,284,507,74" FontSize="25"/>
-        <TextBox Text="" TextWrapping="Wrap" Margin="400,154,111,231"/>
-        <TextBox Text="" TextWrapping="Wrap" Margin="400,284,111,98"/>
+        <TextBox x:Name="CountInput" TextWrapping="Wrap" Margin="400,154,111,231" TextChanged="CountInput_TextChanged"/>
+        <TextBox x:Name="PriceInput" TextWrapping="Wrap" Margin="400,284,111,98"/>
         <Button Content="Submit" Margin="174,359,226,18" FontSize="20" Click="Button_Click"/>
     </Grid>
 </Window>
