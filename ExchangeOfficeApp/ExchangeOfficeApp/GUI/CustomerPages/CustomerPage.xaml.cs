@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExchangeOfficeApp.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -24,13 +25,13 @@ namespace ExchangeOfficeApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            BuySellPage buySellPage = new BuySellPage();
+            BuySellPage buySellPage = new BuySellPage(OperationType.BUY);
             buySellPage.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            BuySellPage buySellPage = new BuySellPage();
+            BuySellPage buySellPage = new BuySellPage(OperationType.BUY);
             buySellPage.Show();
         }
     }

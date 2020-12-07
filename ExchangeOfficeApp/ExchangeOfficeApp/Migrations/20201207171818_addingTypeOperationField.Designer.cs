@@ -4,14 +4,16 @@ using ExchangeOfficeApp.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExchangeOfficeApp.Migrations
 {
     [DbContext(typeof(ReceiptContext))]
-    partial class ReceiptContextModelSnapshot : ModelSnapshot
+    [Migration("20201207171818_addingTypeOperationField")]
+    partial class addingTypeOperationField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,9 +54,6 @@ namespace ExchangeOfficeApp.Migrations
 
                     b.Property<double>("ClientMoney")
                         .HasColumnType("float");
-
-                    b.Property<int>("CurrencyType")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
