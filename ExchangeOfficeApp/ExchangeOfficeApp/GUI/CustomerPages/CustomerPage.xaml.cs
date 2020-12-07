@@ -23,15 +23,15 @@ namespace ExchangeOfficeApp
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
             BuySellPage buySellPage = new BuySellPage(OperationType.BUY);
             buySellPage.Show();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SellButton_Click(object sender, RoutedEventArgs e)
         {
-            BuySellPage buySellPage = new BuySellPage(OperationType.BUY);
+            BuySellPage buySellPage = new BuySellPage(OperationType.SELL);
             buySellPage.Show();
         }
     }

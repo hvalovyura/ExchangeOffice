@@ -8,15 +8,13 @@
         Title="ViewAllReceiptsPage" Height="450" Width="800">
     <Grid>
         <Label Content="All receipts" Margin="286,10,307,330" FontSize="25"/>
-        <Label Content="Date" Margin="37,134,655,217" FontSize="15"/>
-        <Label Content="Name" Margin="150,134,542,217" FontSize="15"/>
-        <Label Content="Count" Margin="476,134,216,217" FontSize="15"/>
-        <Label Content="Price" Margin="604,134,88,217" FontSize="15"/>
-        <DataGrid Margin="10,168,10,0" x:Name="receiptsList">
+        <DataGrid Margin="0,57,0,0" x:Name="receiptsList">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding LastName}" Header="Покупатель" Width="300"/>
-                <DataGridTextColumn Binding="{Binding ClientMoney}" Header="Заплатил" Width="150"/>
-                <DataGridTextColumn Binding="{Binding OfficeMoney}" Header="Получил" Width="150"/>
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Покупатель" Width="150"/>
+                <DataGridTextColumn Binding="{Binding ClientMoney}" Header="Заплатил" Width="120"/>
+                <DataGridTextColumn Binding="{Binding OfficeMoney}" Header="Получил" Width="120"/>
+                <DataGridTextColumn Binding="{Binding OperationType}" Header="Buy/Sell" Width="120"/>
+                <DataGridTextColumn Binding="{Binding CurrencyType}" Header="Валюта" Width="120"/>
                 <DataGridTextColumn Binding="{Binding DateTime}" Header="Время" Width="150"/>
             </DataGrid.Columns>
         </DataGrid>

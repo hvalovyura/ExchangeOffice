@@ -2,8 +2,10 @@
 using ExchangeOfficeApp.Models;
 using ExchangeOfficeApp.Models.Enums;
 using ExchangeOfficeApp.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,11 +25,20 @@ namespace ExchangeOfficeApp
     {
         OperationType _type;
         private readonly ReceiptContext _context;
+        private readonly double buyPrice;
+        private readonly double sellPrice;
         public BuySellPage(OperationType type)
         {
             InitializeComponent();
+
             _type = type;
             _context = new ReceiptContext();
+            _context.ChangingPrices.Load();
+
+            buyPrice = _context.ChangingPrices.OrderBy(p => p.DateTime).LastOrDefaultAsync().Result.BuyPrice;
+            sellPrice = _context.ChangingPrices.OrderBy(p => p.DateTime).LastOrDefaultAsync().Result.SellPrice;
+
+            this.MainLabel.Content = $"{type} page. Course: {(type == OperationType.BUY ? buyPrice : sellPrice)}";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,11 +65,11 @@ namespace ExchangeOfficeApp
             try
             {
                 var count = Convert.ToInt32(this.CountInput.Text);
-                this.PriceInput.Text = $"{count * 100}";
+                this.PriceInput.Text = $"{count * (_type == OperationType.BUY ? buyPrice : sellPrice)}";
             }
             catch(Exception)
             {
-                throw new NotImplementedException();
+                this.PriceInput.Text = "0";
             }
         }
     }
