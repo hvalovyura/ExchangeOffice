@@ -1,8 +1,10 @@
 ﻿using ExchangeOfficeApp.Enums;
 using ExchangeOfficeApp.Models;
 using ExchangeOfficeApp.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +26,13 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
         public ChangingPricePage()
         {
             InitializeComponent();
+
             _receiptContext = new ReceiptContext();
+
+            _receiptContext.ChangingPrices.Load();
+
+            oldBuyPriceLabel.Content += Convert.ToString(_receiptContext.ChangingPrices.OrderBy(i => i.Id).Last().BuyPrice) + " BYN";
+            oldSellPriceLabel.Content += Convert.ToString(_receiptContext.ChangingPrices.OrderBy(i => i.Id).Last().SellPrice) + " BYN";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
