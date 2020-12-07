@@ -31,8 +31,8 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
 
             _receiptContext.ChangingPrices.Load();
 
-            oldBuyPriceLabel.Content += Convert.ToString(_receiptContext.ChangingPrices.OrderBy(i => i.Id).Last().BuyPrice) + " BYN";
-            oldSellPriceLabel.Content += Convert.ToString(_receiptContext.ChangingPrices.OrderBy(i => i.Id).Last().SellPrice) + " BYN";
+            oldBuyPriceLabel.Content += _receiptContext.ChangingPrices.Any() ?  Convert.ToString(_receiptContext.ChangingPrices.OrderBy(i => i.Id).Last().BuyPrice) + " BYN" : "";
+            oldSellPriceLabel.Content += _receiptContext.ChangingPrices.Any() ? Convert.ToString(_receiptContext.ChangingPrices.OrderBy(i => i.Id).Last().SellPrice) + " BYN" : "";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

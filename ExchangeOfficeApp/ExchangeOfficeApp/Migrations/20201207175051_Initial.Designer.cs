@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExchangeOfficeApp.Migrations
 {
     [DbContext(typeof(ReceiptContext))]
-    [Migration("20201207173535_addingCurrencyTypeIntoReceipModel")]
-    partial class addingCurrencyTypeIntoReceipModel
+    [Migration("20201207175051_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
