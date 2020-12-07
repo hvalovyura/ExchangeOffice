@@ -12,5 +12,13 @@
         <Label Content="Name" Margin="150,134,542,217" FontSize="15"/>
         <Label Content="Count" Margin="476,134,216,217" FontSize="15"/>
         <Label Content="Price" Margin="604,134,88,217" FontSize="15"/>
+        <DataGrid Margin="10,168,10,0" x:Name="receiptsList">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Покупатель" Width="300"/>
+                <DataGridTextColumn Binding="{Binding ClientMoney}" Header="Заплатил" Width="150"/>
+                <DataGridTextColumn Binding="{Binding OfficeMoney}" Header="Получил" Width="150"/>
+                <DataGridTextColumn Binding="{Binding DateTime}" Header="Время" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

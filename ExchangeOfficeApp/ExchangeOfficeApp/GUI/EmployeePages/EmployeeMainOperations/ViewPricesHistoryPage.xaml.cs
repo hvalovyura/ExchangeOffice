@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ExchangeOfficeApp.Repository;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,9 +19,15 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ViewPricesHistoryPage : Window
     {
+        ReceiptContext db;
         public ViewPricesHistoryPage()
         {
             InitializeComponent();
+
+            db = new ReceiptContext();
+            db.ChangingPrices.Load();
+            changingPricesList.ItemsSource = db.ChangingPrices.Local.ToBindingList();
         }
+
     }
 }

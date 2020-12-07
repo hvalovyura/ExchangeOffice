@@ -8,12 +8,13 @@
         Title="ViewPricesHistoryPage" Height="450" Width="800">
     <Grid>
         <Label Content="Prices history" Margin="286,10,307,330" FontSize="25"/>
-        <Label Content="Date" Margin="10,134,669,217" FontSize="15"/>
-        <Label Content="Buy" Margin="136,134,556,217" FontSize="15"/>
-        <Label Content="Price" Margin="249,134,443,217" FontSize="15"/>
-        <Label Content="Date" Margin="432,134,246,217" FontSize="15"/>
-        <Label Content="Sell" Margin="554,134,138,217" FontSize="15"/>
-        <Label Content="Price" Margin="682,134,10,217" FontSize="15"/>
-
+        <DataGrid Margin="10,104,10,0" x:Name="changingPricesList">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding CurrencyType}" Header="Валюта" Width="300"/>
+                <DataGridTextColumn Binding="{Binding BuyPrice}" Header="Покупка" Width="150"/>
+                <DataGridTextColumn Binding="{Binding SellPrice}" Header="Продажа" Width="150"/>
+                <DataGridTextColumn Binding="{Binding DateTime}" Header="Время" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

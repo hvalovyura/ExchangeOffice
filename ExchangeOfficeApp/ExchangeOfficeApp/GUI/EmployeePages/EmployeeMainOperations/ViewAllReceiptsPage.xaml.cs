@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExchangeOfficeApp.Repository;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,9 +18,16 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ViewAllReceiptsPage : Window
     {
+        ReceiptContext db;
         public ViewAllReceiptsPage()
         {
             InitializeComponent();
+
+            db = new ReceiptContext();
+
+            receiptsList.ItemsSource = db.Receipts.Local.ToBindingList();
         }
+
+        
     }
 }
