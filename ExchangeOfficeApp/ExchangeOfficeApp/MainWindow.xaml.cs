@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ExchangeOfficeApp.Models;
+using ExchangeOfficeApp.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,24 @@ namespace ExchangeOfficeApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        ReceiptContext _context;
         public MainWindow()
         {
             InitializeComponent();
+
+            _context = new ReceiptContext();
+            if (!_context.Users.Any())
+            {
+                _context.AddRange
+                    (
+                        new User
+                        {
+                            Username = "admin",
+                            Password = "admin"
+                        }
+                    );
+                _context.SaveChanges();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
