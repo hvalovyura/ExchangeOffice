@@ -11,6 +11,7 @@ namespace ExchangeOfficeApp.Repository
 
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<ChangePrice> ChangingPrices { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public ReceiptContext()
         {
