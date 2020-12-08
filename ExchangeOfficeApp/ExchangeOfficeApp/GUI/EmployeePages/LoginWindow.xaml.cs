@@ -1,6 +1,8 @@
 ﻿using ExchangeOfficeApp.EmployeePages;
+using ExchangeOfficeApp.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,16 +20,34 @@ namespace ExchangeOfficeApp
     /// </summary>
     public partial class LoginWindow : Window
     {
+        ReceiptContext _context;
+
+        private string login;
+        private string password;
+
         public LoginWindow()
         {
             InitializeComponent();
+
+            _context = new ReceiptContext();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            EmployeePage employeePage = new EmployeePage();
-            employeePage.Show();
-            this.Close();
+            login = this.loginInput.Text;
+            password = this.passwordInput.Text;
+
+            if(_context.Users.Where(u => u.Username == login && u.Password == password).Any())
+            {
+                EmployeePage employeePage = new EmployeePage();
+                employeePage.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(this, "Validation error", "Error", MessageBoxButton.OK);
+            }
+            
         }
     }
 }
