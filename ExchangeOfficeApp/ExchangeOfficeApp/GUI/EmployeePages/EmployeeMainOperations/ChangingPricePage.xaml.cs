@@ -29,8 +29,8 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
 
             _repo = new ChangingPriceRepository();
 
-            oldBuyPriceLabel.Content += _repo.GetLastChangingPrices().BuyPrice + " BYN";
-            oldSellPriceLabel.Content += _repo.GetLastChangingPrices().SellPrice + " BYN";
+            oldBuyPriceLabel.Content += _repo.GetLastChangingPrices().BuyPrice.ToString() + " BYN";
+            oldSellPriceLabel.Content += _repo.GetLastChangingPrices().SellPrice.ToString() + " BYN";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
