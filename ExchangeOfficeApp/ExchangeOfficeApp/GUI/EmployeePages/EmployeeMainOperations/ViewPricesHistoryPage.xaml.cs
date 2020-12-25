@@ -1,5 +1,6 @@
 ﻿using ExchangeOfficeApp.Repository;
 using ExchangeOfficeRepository.Repository;
+using ExchangeOfficeRepository.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ViewPricesHistoryPage : Window
     {
-        private readonly ChangingPriceRepository _repo;
+        private readonly IChangingPriceRepository _repo;
         public ViewPricesHistoryPage()
         {
             InitializeComponent();

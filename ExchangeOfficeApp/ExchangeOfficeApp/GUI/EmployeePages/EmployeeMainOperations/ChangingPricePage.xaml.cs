@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ExchangeOfficeRepository.Repository;
+using ExchangeOfficeRepository.Repository.Interfaces.General;
+using ExchangeOfficeRepository.Repository.Interfaces;
 
 namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
 {
@@ -22,7 +24,7 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ChangingPricePage : Window
     {
-        private readonly ChangingPriceRepository _repo;
+        private readonly IChangingPriceRepository _repo;
         public ChangingPricePage()
         {
             InitializeComponent();

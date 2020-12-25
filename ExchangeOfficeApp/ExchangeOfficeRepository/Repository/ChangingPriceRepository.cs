@@ -1,5 +1,6 @@
 ﻿using ExchangeOfficeApp.Models;
 using ExchangeOfficeApp.Repository;
+using ExchangeOfficeRepository.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ExchangeOfficeRepository.Repository
 {
-    public class ChangingPriceRepository
+    public class ChangingPriceRepository : IChangingPriceRepository
     {
         private readonly ReceiptRepoContext _db;
 
