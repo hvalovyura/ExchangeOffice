@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ExchangeOfficeApp.Migrations
+namespace ExchangeOfficeRepository.Migrations
 {
-    [DbContext(typeof(ReceiptContext))]
-    partial class ReceiptContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ReceiptRepoContext))]
+    partial class ReceiptRepoContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

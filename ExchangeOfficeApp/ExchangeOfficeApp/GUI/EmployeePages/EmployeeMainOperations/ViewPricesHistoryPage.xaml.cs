@@ -19,15 +19,14 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ViewPricesHistoryPage : Window
     {
-        ReceiptContext db;
+        ReceiptRepoContext db;
         public ViewPricesHistoryPage()
         {
             InitializeComponent();
 
-            db = new ReceiptContext();
+            db = new ReceiptRepoContext();
             db.ChangingPrices.Load();
             changingPricesList.ItemsSource = db.ChangingPrices.Local.ToBindingList();
         }
-
     }
 }

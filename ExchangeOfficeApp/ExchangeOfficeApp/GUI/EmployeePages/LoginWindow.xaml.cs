@@ -20,7 +20,7 @@ namespace ExchangeOfficeApp
     /// </summary>
     public partial class LoginWindow : Window
     {
-        ReceiptContext _context;
+        ReceiptRepoContext _context;
 
         private string login;
         private string password;
@@ -29,7 +29,7 @@ namespace ExchangeOfficeApp
         {
             InitializeComponent();
 
-            _context = new ReceiptContext();
+            _context = new ReceiptRepoContext();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

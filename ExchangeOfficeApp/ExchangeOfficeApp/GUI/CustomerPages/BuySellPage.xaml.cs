@@ -24,7 +24,7 @@ namespace ExchangeOfficeApp
     public partial class BuySellPage : Window
     {
         OperationType _type;
-        private readonly ReceiptContext _context;
+        private readonly ReceiptRepoContext _context;
         private readonly double buyPrice;
         private readonly double sellPrice;
         public BuySellPage(OperationType type)
@@ -32,7 +32,7 @@ namespace ExchangeOfficeApp
             InitializeComponent();
 
             _type = type;
-            _context = new ReceiptContext();
+            _context = new ReceiptRepoContext();
             _context.ChangingPrices.Load();
 
             buyPrice = _context.ChangingPrices.OrderBy(p => p.DateTime).LastOrDefaultAsync().Result.BuyPrice;

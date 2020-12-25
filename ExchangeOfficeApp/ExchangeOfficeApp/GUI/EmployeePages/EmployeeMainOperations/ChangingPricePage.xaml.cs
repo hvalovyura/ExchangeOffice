@@ -1,6 +1,5 @@
 ﻿using ExchangeOfficeApp.Enums;
 using ExchangeOfficeApp.Models;
-using ExchangeOfficeApp.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ExchangeOfficeApp.Repository;
 
 namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
 {
@@ -22,12 +22,12 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ChangingPricePage : Window
     {
-        private readonly ReceiptContext _receiptContext;
+        private readonly ReceiptRepoContext _receiptContext;
         public ChangingPricePage()
         {
             InitializeComponent();
 
-            _receiptContext = new ReceiptContext();
+            _receiptContext = new ReceiptRepoContext();
 
             _receiptContext.ChangingPrices.Load();
 

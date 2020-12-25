@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ExchangeOfficeApp.Migrations
+namespace ExchangeOfficeRepository.Migrations
 {
-    public partial class Initial : Migration
+    public partial class newInitialForRepo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -22,12 +22,12 @@ namespace ExchangeOfficeApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        ReceiptContext _context;
+        ReceiptRepoContext _context;
         public MainWindow()
         {
             InitializeComponent();
 
-            _context = new ReceiptContext();
+            _context = new ReceiptRepoContext();
             if (!_context.Users.Any())
             {
                 _context.AddRange

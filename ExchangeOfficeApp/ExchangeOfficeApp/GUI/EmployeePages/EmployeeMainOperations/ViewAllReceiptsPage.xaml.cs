@@ -19,12 +19,12 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ViewAllReceiptsPage : Window
     {
-        private readonly ReceiptContext _context;
+        private readonly ReceiptRepoContext _context;
         public ViewAllReceiptsPage()
         {
             InitializeComponent();
 
-            _context = new ReceiptContext();
+            _context = new ReceiptRepoContext();
 
             _context.Receipts.Load();
 

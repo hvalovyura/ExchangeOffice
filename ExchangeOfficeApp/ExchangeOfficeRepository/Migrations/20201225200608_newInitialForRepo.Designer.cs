@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ExchangeOfficeApp.Migrations
+namespace ExchangeOfficeRepository.Migrations
 {
-    [DbContext(typeof(ReceiptContext))]
-    [Migration("20201208033456_Initial")]
-    partial class Initial
+    [DbContext(typeof(ReceiptRepoContext))]
+    [Migration("20201225200608_newInitialForRepo")]
+    partial class newInitialForRepo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
