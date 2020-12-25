@@ -14,11 +14,11 @@ namespace ExchangeOfficeRepository.Repository
 {
     public class ChangingPriceRepository : IChangingPriceRepository
     {
-        private readonly ReceiptRepoContext _db;
+        private readonly AppDBContext _db;
 
         public ChangingPriceRepository()
         {
-            _db = new ReceiptRepoContext();
+            _db = new AppDBContext();
 
             _db.ChangingPrices.Load();
         }

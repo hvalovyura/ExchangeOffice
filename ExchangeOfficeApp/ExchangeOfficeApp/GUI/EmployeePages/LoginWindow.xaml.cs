@@ -1,5 +1,6 @@
 ﻿using ExchangeOfficeApp.EmployeePages;
-using ExchangeOfficeApp.Repository;
+using ExchangeOfficeRepository.Repository;
+using ExchangeOfficeRepository.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace ExchangeOfficeApp
     /// </summary>
     public partial class LoginWindow : Window
     {
-        ReceiptRepoContext _context;
+        private readonly IUserRepository _repo;
 
         private string login;
         private string password;
@@ -29,7 +30,7 @@ namespace ExchangeOfficeApp
         {
             InitializeComponent();
 
-            _context = new ReceiptRepoContext();
+            _repo = new UserRepository();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -37,7 +38,7 @@ namespace ExchangeOfficeApp
             login = this.loginInput.Text;
             password = this.passwordInput.Text;
 
-            if(_context.Users.Where(u => u.Username == login && u.Password == password).Any())
+            if(_repo.GetAllUsers().Where(u => u.Username == login && u.Password == password).Any())
             {
                 EmployeePage employeePage = new EmployeePage();
                 employeePage.Show();

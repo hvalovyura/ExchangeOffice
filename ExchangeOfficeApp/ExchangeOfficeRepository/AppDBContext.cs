@@ -7,14 +7,14 @@ using System.Text;
 
 namespace ExchangeOfficeApp.Repository
 {
-    public class ReceiptRepoContext: DbContext
+    public class AppDBContext: DbContext
     {
 
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<ChangePrice> ChangingPrices { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public ReceiptRepoContext()
+        public AppDBContext()
         {
             Database.EnsureCreated();
         }

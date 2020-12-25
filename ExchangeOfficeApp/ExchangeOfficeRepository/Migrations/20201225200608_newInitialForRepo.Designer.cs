@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExchangeOfficeRepository.Migrations
 {
-    [DbContext(typeof(ReceiptRepoContext))]
+    [DbContext(typeof(AppDBContext))]
     [Migration("20201225200608_newInitialForRepo")]
     partial class newInitialForRepo
     {

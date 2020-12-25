@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExchangeOfficeRepository.Migrations
 {
-    [DbContext(typeof(ReceiptRepoContext))]
+    [DbContext(typeof(AppDBContext))]
     partial class ReceiptRepoContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
