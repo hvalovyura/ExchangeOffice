@@ -2,6 +2,8 @@
 using ExchangeOfficeApp.Models;
 using ExchangeOfficeApp.Models.Enums;
 using ExchangeOfficeApp.Repository;
+using ExchangeOfficeRepository.Repository;
+using ExchangeOfficeRepository.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,8 @@ namespace ExchangeOfficeApp
     public partial class BuySellPage : Window
     {
         OperationType _type;
-        private readonly AppDBContext _context;
+        private readonly IChangingPriceRepository _changingPriceRepo;
+        private readonly IReceiptRepository _receiptRepo;
         private readonly double buyPrice;
         private readonly double sellPrice;
         public BuySellPage(OperationType type)
@@ -32,11 +35,11 @@ namespace ExchangeOfficeApp
             InitializeComponent();
 
             _type = type;
-            _context = new AppDBContext();
-            _context.ChangingPrices.Load();
+            _changingPriceRepo = new ChangingPriceRepository();
+            _receiptRepo = new ReceiptRepository();
 
-            buyPrice = _context.ChangingPrices.OrderBy(p => p.DateTime).LastOrDefaultAsync().Result.BuyPrice;
-            sellPrice = _context.ChangingPrices.OrderBy(p => p.DateTime).LastOrDefaultAsync().Result.SellPrice;
+            buyPrice = _changingPriceRepo.GetAllChangingPrices().OrderBy(p => p.DateTime).LastOrDefault().BuyPrice;
+            sellPrice = _changingPriceRepo.GetAllChangingPrices().OrderBy(p => p.DateTime).LastOrDefault().SellPrice;
 
             this.MainLabel.Content = $"{type} page. Course: {(type == OperationType.BUY ? buyPrice : sellPrice)}";
         }
@@ -47,15 +50,14 @@ namespace ExchangeOfficeApp
             {
                 FirstName = "FirstName",
                 LastName = "LastName",
-                OperationType = OperationType.BUY,
+                OperationType = _type,
                 ClientMoney = Convert.ToDouble(PriceInput.Text),
                 OfficeMoney = Convert.ToDouble(CountInput.Text),
                 DateTime = DateTime.Now,
                 CurrencyType = CurrencyType.USD
             };
 
-            _context.Receipts.Add(receipt);
-            _context.SaveChanges();
+            _receiptRepo.Add(receipt);
             this.Close();
         }
 
