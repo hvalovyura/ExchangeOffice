@@ -1,0 +1,46 @@
+﻿using ExchangeOfficeApp.Models;
+using ExchangeOfficeApp.Repository;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExchangeOfficeRepository.Repository
+{
+    public class ChangingPriceRepository
+    {
+        private readonly ReceiptRepoContext _db;
+
+        public ChangingPriceRepository()
+        {
+            _db = new ReceiptRepoContext();
+
+            _db.ChangingPrices.Load();
+        }
+
+        public BindingList<ChangePrice> GetAllChangingPrices()
+        {
+            return _db.ChangingPrices.Any() ? _db.ChangingPrices.Local.ToBindingList() : null;
+        }
+
+        public ChangePrice GetLastChangingPrices()
+        {
+            return _db.ChangingPrices.Any() ? _db.ChangingPrices.OrderBy(i => i.Id).Last() : null;
+        }
+
+        public void Add(ChangePrice changePrice)
+        {
+            _db.ChangingPrices.Add(changePrice);
+            SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
+            _db.SaveChanges();
+        }
+    }
+}

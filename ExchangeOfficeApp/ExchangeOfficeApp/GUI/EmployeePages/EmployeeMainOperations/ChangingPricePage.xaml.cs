@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ExchangeOfficeApp.Repository;
+using ExchangeOfficeRepository.Repository;
 
 namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
 {
@@ -22,17 +22,15 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ChangingPricePage : Window
     {
-        private readonly ReceiptRepoContext _receiptContext;
+        private readonly ChangingPriceRepository _repo;
         public ChangingPricePage()
         {
             InitializeComponent();
 
-            _receiptContext = new ReceiptRepoContext();
+            _repo = new ChangingPriceRepository();
 
-            _receiptContext.ChangingPrices.Load();
-
-            oldBuyPriceLabel.Content += _receiptContext.ChangingPrices.Any() ?  Convert.ToString(_receiptContext.ChangingPrices.OrderBy(i => i.Id).Last().BuyPrice) + " BYN" : "";
-            oldSellPriceLabel.Content += _receiptContext.ChangingPrices.Any() ? Convert.ToString(_receiptContext.ChangingPrices.OrderBy(i => i.Id).Last().SellPrice) + " BYN" : "";
+            oldBuyPriceLabel.Content += _repo.GetLastChangingPrices().BuyPrice + " BYN";
+            oldSellPriceLabel.Content += _repo.GetLastChangingPrices().SellPrice + " BYN";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -46,8 +44,7 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
                 BuyPrice = newBuyPrice,
                 SellPrice = newSellPrice
             };
-            _receiptContext.ChangingPrices.Add(newPrice);
-            _receiptContext.SaveChanges();
+            _repo.Add(newPrice);
             this.Close();
         }
     }

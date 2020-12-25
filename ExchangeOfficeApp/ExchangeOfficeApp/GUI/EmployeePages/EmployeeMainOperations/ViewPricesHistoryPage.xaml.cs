@@ -1,4 +1,5 @@
 ﻿using ExchangeOfficeApp.Repository;
+using ExchangeOfficeRepository.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,13 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ViewPricesHistoryPage : Window
     {
-        ReceiptRepoContext db;
+        private readonly ChangingPriceRepository _repo;
         public ViewPricesHistoryPage()
         {
             InitializeComponent();
 
-            db = new ReceiptRepoContext();
-            db.ChangingPrices.Load();
-            changingPricesList.ItemsSource = db.ChangingPrices.Local.ToBindingList();
+            _repo = new ChangingPriceRepository();
+            changingPricesList.ItemsSource = _repo.GetAllChangingPrices();
         }
     }
 }
