@@ -43,18 +43,38 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var newBuyPrice = Convert.ToDouble(this.NewBuyPriceTextBox.Text);
-            var newSellPrice = Convert.ToDouble(this.NewSellPriceTextBox.Text);
-            var newPrice = new ChangePrice
+        {        
+            try
             {
-                CurrencyType = (CurrencyType)CurrencyTypeComboBox.SelectedItem,
-                DateTime = DateTime.Now,
-                BuyPrice = newBuyPrice,
-                SellPrice = newSellPrice
-            };
-            _changingPriceService.Add(newPrice);
-            this.Close();
+                var countBuy = Convert.ToInt32(this.NewBuyPriceTextBox.Text);
+                var countSell = Convert.ToInt32(this.NewSellPriceTextBox.Text);
+                if (countBuy > 0 && countSell > 0)
+                {
+                    var newBuyPrice = Convert.ToDouble(this.NewBuyPriceTextBox.Text);
+                    var newSellPrice = Convert.ToDouble(this.NewSellPriceTextBox.Text);
+                    var newPrice = new ChangePrice
+                    {
+                        CurrencyType = (CurrencyType)CurrencyTypeComboBox.SelectedItem,
+                        DateTime = DateTime.Now,
+                        BuyPrice = newBuyPrice,
+                        SellPrice = newSellPrice
+                    };
+                    _changingPriceService.Add(newPrice);
+                    this.Close();
+                }
+                else if (countBuy <= 0 || countSell <= 0)
+                {
+                    MessageBox.Show(this, $"Can't make new price less than or equal 0.", "Error", MessageBoxButton.OK);
+                    NewBuyPriceTextBox.Text = countBuy.ToString();
+                    NewSellPriceTextBox.Text = countSell.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(this, $"Something goes wrong.", "Error", MessageBoxButton.OK);
+            }
+            
+            
         }
 
         private void CurrencyTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
