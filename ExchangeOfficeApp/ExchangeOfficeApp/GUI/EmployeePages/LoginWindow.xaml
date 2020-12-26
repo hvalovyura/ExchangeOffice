@@ -11,7 +11,7 @@
         <Label Content="Login" Margin="174,149,472,227" FontSize="25"/>
         <Label Content="Password" Margin="132,284,472,75" FontSize="25"/>
         <TextBox x:Name="loginInput" Text="" TextWrapping="Wrap" Margin="400,154,111,231"/>
-        <TextBox x:Name="passwordInput" Text="" TextWrapping="Wrap" Margin="400,284,111,98"/>
+        <PasswordBox x:Name="passwordInput" PasswordChar="*" Margin="400,284,111,98"/>
         <Button Content="Login" Margin="174,359,226,18" FontSize="20" Click="Button_Click"/>
 
     </Grid>

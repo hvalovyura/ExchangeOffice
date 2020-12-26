@@ -36,7 +36,7 @@ namespace ExchangeOfficeApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             login = this.loginInput.Text;
-            password = this.passwordInput.Text;
+            password = this.passwordInput.Password;
 
             if(_repo.GetAllUsers().Where(u => u.Username == login && u.Password == password).Any())
             {
