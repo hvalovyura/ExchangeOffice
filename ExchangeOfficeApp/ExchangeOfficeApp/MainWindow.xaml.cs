@@ -1,5 +1,7 @@
 ﻿using ExchangeOfficeApp.Models;
 using ExchangeOfficeApp.Repository;
+using ExchangeOfficeServices.Services;
+using ExchangeOfficeServices.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,23 +24,15 @@ namespace ExchangeOfficeApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        AppDBContext _context;
+        private readonly IUserService _userService;
         public MainWindow()
         {
             InitializeComponent();
 
-            _context = new AppDBContext();
-            if (!_context.Users.Any())
+            _userService = new UserService();
+            if (!_userService.GetAllUsers().Any())
             {
-                _context.AddRange
-                    (
-                        new User
-                        {
-                            Username = "admin",
-                            Password = "admin"
-                        }
-                    );
-                _context.SaveChanges();
+                _userService.Add("admin", "admin");
             }
         }
 

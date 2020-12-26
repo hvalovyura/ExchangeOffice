@@ -9,5 +9,6 @@ namespace ExchangeOfficeServices.Services.Interfaces
     {
         public void Add(string username, string password);
         public IEnumerable<User> GetAllUsers();
+        public bool ValidateLogin(string username, string password);
     }
 }

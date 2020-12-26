@@ -40,7 +40,7 @@ namespace ExchangeOfficeApp
             login = this.loginInput.Text;
             password = this.passwordInput.Password;
 
-            if(_userService.GetAllUsers().Where(u => u.Username == login && u.Password == password).Any())
+            if(_userService.ValidateLogin(login, password))
             {
                 EmployeePage employeePage = new EmployeePage();
                 employeePage.Show();
