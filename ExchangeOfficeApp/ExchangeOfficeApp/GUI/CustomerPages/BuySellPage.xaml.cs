@@ -49,6 +49,7 @@ namespace ExchangeOfficeApp
             CurrencyTypeComboBox.Items.Add(CurrencyType.EUR);
             CurrencyTypeComboBox.Items.Add(CurrencyType.USD);
             CurrencyTypeComboBox.Items.Add(CurrencyType.RUB);
+            CurrencyTypeComboBox.SelectedItem = CurrencyType.USD;
 
             this.MainLabel.Content = $"{type} page. Course: {(type == OperationType.BUY ? buyPrice : sellPrice)}";
         }
