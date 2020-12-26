@@ -10,10 +10,12 @@
         <Label x:Name="MainLabel" Content="" Margin="285,10,226,346" FontSize="25"/>
         <Label Content="Count" Margin="174,188,472,188" FontSize="25"/>
         <Label Content="Price" Margin="174,284,507,74" FontSize="25"/>
+        <Label Content="Name" Margin="174,100,507,258" FontSize="25"/>
         <TextBox x:Name="CountInput" TextWrapping="Wrap" Margin="400,192,111,192" TextChanged="CountInput_TextChanged"/>
         <TextBox x:Name="PriceInput" TextWrapping="Wrap" Margin="400,284,111,98"/>
+        <TextBox x:Name="NameInput" TextWrapping="Wrap" Margin="400,100,111,282"/>
         <Button Content="Submit" Margin="174,359,226,18" FontSize="20" Click="Button_Click"/>
-        <ComboBox x:Name="CurrencyTypeComboBox" Margin="309,122,380,259" SelectionChanged="CurrencyTypeComboBox_SelectionChanged">
+        <ComboBox x:Name="CurrencyTypeComboBox" Margin="140,23,549,358" SelectionChanged="CurrencyTypeComboBox_SelectionChanged">
 
         </ComboBox>
     </Grid>

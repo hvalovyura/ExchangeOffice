@@ -57,19 +57,26 @@ namespace ExchangeOfficeApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var receipt = new Receipt
+            if (Convert.ToInt32(CountInput.Text) > 0 && Convert.ToInt32(PriceInput.Text) > 0 && !string.IsNullOrEmpty(NameInput.Text))
             {
-                FirstName = "FirstName",
-                LastName = "LastName",
-                OperationType = _type,
-                ClientMoney = Convert.ToDouble(PriceInput.Text),
-                OfficeMoney = Convert.ToDouble(CountInput.Text),
-                DateTime = DateTime.Now,
-                CurrencyType = (CurrencyType)CurrencyTypeComboBox.SelectedItem
-            };
+                var receipt = new Receipt
+                {
+                    FirstName = NameInput.Text,
+                    LastName = NameInput.Text,
+                    OperationType = _type,
+                    ClientMoney = Convert.ToDouble(PriceInput.Text),
+                    OfficeMoney = Convert.ToDouble(CountInput.Text),
+                    DateTime = DateTime.Now,
+                    CurrencyType = (CurrencyType)CurrencyTypeComboBox.SelectedItem
+                };
 
-            _receiptService.Add(receipt);
-            this.Close();
+                _receiptService.Add(receipt);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(this, $"Something goes wrong.", "Error", MessageBoxButton.OK);
+            }
         }
 
 
@@ -78,14 +85,19 @@ namespace ExchangeOfficeApp
             try
             {
                 var count = Convert.ToInt32(this.CountInput.Text);
-                if (count <= maxCountPerDay)
+                if (count <= maxCountPerDay && count >= 0)
                 {
                     this.PriceInput.Text = $"{count * (_type == OperationType.BUY ? buyPrice : sellPrice)}";
                     _count = this.CountInput.Text;
                 }
+                else if (count < 0)
+                {
+                    MessageBox.Show(this, $"Can't {_type} less than or equal 0.", "Error", MessageBoxButton.OK);
+                    this.CountInput.Text = _count;
+                }
                 else
                 {
-                    MessageBox.Show(this, $"Can't {_type} more than {maxCountPerDay}", "Error", MessageBoxButton.OK);
+                    MessageBox.Show(this, $"Can't {_type} more than {maxCountPerDay}.", "Error", MessageBoxButton.OK);
                     this.CountInput.Text = _count;
                 }
                 
@@ -93,6 +105,11 @@ namespace ExchangeOfficeApp
             catch(Exception)
             {
                 this.PriceInput.Text = "0";
+                if (!string.IsNullOrEmpty(this.CountInput.Text))
+                {
+                    MessageBox.Show(this, $"Incorrect symbols, enter number.", "Error", MessageBoxButton.OK);
+                    this.CountInput.Text = _count;
+                }                
             }
         }
 
