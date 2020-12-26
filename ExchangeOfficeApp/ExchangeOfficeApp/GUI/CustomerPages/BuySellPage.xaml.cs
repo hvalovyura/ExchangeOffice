@@ -9,6 +9,7 @@ using ExchangeOfficeServices.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -32,6 +33,7 @@ namespace ExchangeOfficeApp
         private readonly IReceiptService _receiptService;
         private readonly double buyPrice;
         private readonly double sellPrice;
+        private readonly int maxCountPerDay;
         public BuySellPage(OperationType type)
         {
             InitializeComponent();
@@ -42,6 +44,11 @@ namespace ExchangeOfficeApp
 
             buyPrice = Convert.ToDouble(_changingPriceService.GetLastChangingBuyPrice());
             sellPrice = Convert.ToDouble(_changingPriceService.GetLastChangingSellPrice());
+            maxCountPerDay = Convert.ToInt32(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).AppSettings.Settings["MaxCurrencyCountPerDay"].Value);
+
+            CurrencyTypeComboBox.Items.Add(CurrencyType.EUR);
+            CurrencyTypeComboBox.Items.Add(CurrencyType.USD);
+            CurrencyTypeComboBox.Items.Add(CurrencyType.RUB);
 
             this.MainLabel.Content = $"{type} page. Course: {(type == OperationType.BUY ? buyPrice : sellPrice)}";
         }
@@ -56,7 +63,7 @@ namespace ExchangeOfficeApp
                 ClientMoney = Convert.ToDouble(PriceInput.Text),
                 OfficeMoney = Convert.ToDouble(CountInput.Text),
                 DateTime = DateTime.Now,
-                CurrencyType = CurrencyType.USD
+                CurrencyType = (CurrencyType)CurrencyTypeComboBox.SelectedItem
             };
 
             _receiptService.Add(receipt);
