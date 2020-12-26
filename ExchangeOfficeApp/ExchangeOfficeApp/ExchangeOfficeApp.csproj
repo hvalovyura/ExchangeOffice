@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExchangeOfficeRepository\ExchangeOfficeRepository.csproj" />
+    <ProjectReference Include="..\ExchangeOfficeServices\ExchangeOfficeServices.csproj" />
   </ItemGroup>
 
 </Project>

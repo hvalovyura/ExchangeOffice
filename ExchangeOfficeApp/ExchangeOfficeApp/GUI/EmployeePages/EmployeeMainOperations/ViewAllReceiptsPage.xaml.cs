@@ -1,5 +1,7 @@
 ﻿using ExchangeOfficeRepository.Repository;
 using ExchangeOfficeRepository.Repository.Interfaces;
+using ExchangeOfficeServices.Services;
+using ExchangeOfficeServices.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,14 +22,14 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ViewAllReceiptsPage : Window
     {
-        private readonly IReceiptRepository _repo;
+        private readonly IReceiptService _receiptService;
         public ViewAllReceiptsPage()
         {
             InitializeComponent();
 
-            _repo = new ReceiptRepository();
+            _receiptService = new ReceiptService();
 
-            receiptsList.ItemsSource = _repo.GetAllReceipts();
+            receiptsList.ItemsSource = _receiptService.GetAllReceipts();
         }
 
         

@@ -4,6 +4,8 @@ using ExchangeOfficeApp.Models.Enums;
 using ExchangeOfficeApp.Repository;
 using ExchangeOfficeRepository.Repository;
 using ExchangeOfficeRepository.Repository.Interfaces;
+using ExchangeOfficeServices.Services;
+using ExchangeOfficeServices.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,8 +28,8 @@ namespace ExchangeOfficeApp
     public partial class BuySellPage : Window
     {
         OperationType _type;
-        private readonly IChangingPriceRepository _changingPriceRepo;
-        private readonly IReceiptRepository _receiptRepo;
+        private readonly IChangingPriceService _changingPriceService;
+        private readonly IReceiptService _receiptService;
         private readonly double buyPrice;
         private readonly double sellPrice;
         public BuySellPage(OperationType type)
@@ -35,11 +37,11 @@ namespace ExchangeOfficeApp
             InitializeComponent();
 
             _type = type;
-            _changingPriceRepo = new ChangingPriceRepository();
-            _receiptRepo = new ReceiptRepository();
+            _changingPriceService = new ChangingPriceService();
+            _receiptService = new ReceiptService();
 
-            buyPrice = _changingPriceRepo.GetAllChangingPrices().OrderBy(p => p.DateTime).LastOrDefault().BuyPrice;
-            sellPrice = _changingPriceRepo.GetAllChangingPrices().OrderBy(p => p.DateTime).LastOrDefault().SellPrice;
+            buyPrice = Convert.ToDouble(_changingPriceService.GetLastChangingBuyPrice());
+            sellPrice = Convert.ToDouble(_changingPriceService.GetLastChangingSellPrice());
 
             this.MainLabel.Content = $"{type} page. Course: {(type == OperationType.BUY ? buyPrice : sellPrice)}";
         }
@@ -57,7 +59,7 @@ namespace ExchangeOfficeApp
                 CurrencyType = CurrencyType.USD
             };
 
-            _receiptRepo.Add(receipt);
+            _receiptService.Add(receipt);
             this.Close();
         }
 

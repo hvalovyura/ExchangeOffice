@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 using ExchangeOfficeRepository.Repository;
 using ExchangeOfficeRepository.Repository.Interfaces.General;
 using ExchangeOfficeRepository.Repository.Interfaces;
+using ExchangeOfficeServices.Services.Interfaces;
+using ExchangeOfficeServices.Services;
 
 namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
 {
@@ -24,15 +26,15 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
     /// </summary>
     public partial class ChangingPricePage : Window
     {
-        private readonly IChangingPriceRepository _repo;
+        private readonly IChangingPriceService _changingPriceService;
         public ChangingPricePage()
         {
             InitializeComponent();
 
-            _repo = new ChangingPriceRepository();
+            _changingPriceService = new ChangingPriceService();
 
-            oldBuyPriceLabel.Content += _repo.GetLastChangingPrices().BuyPrice.ToString() + " BYN";
-            oldSellPriceLabel.Content += _repo.GetLastChangingPrices().SellPrice.ToString() + " BYN";
+            oldBuyPriceLabel.Content += _changingPriceService.GetLastChangingBuyPrice() + " BYN";
+            oldSellPriceLabel.Content += _changingPriceService.GetLastChangingSellPrice() + " BYN";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -46,7 +48,7 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
                 BuyPrice = newBuyPrice,
                 SellPrice = newSellPrice
             };
-            _repo.Add(newPrice);
+            _changingPriceService.Add(newPrice);
             this.Close();
         }
     }
