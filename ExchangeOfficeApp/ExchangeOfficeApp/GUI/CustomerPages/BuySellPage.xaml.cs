@@ -31,8 +31,8 @@ namespace ExchangeOfficeApp
         OperationType _type;
         private readonly IChangingPriceService _changingPriceService;
         private readonly IReceiptService _receiptService;
-        private readonly double buyPrice;
-        private readonly double sellPrice;
+        private double buyPrice;
+        private double sellPrice;
         private readonly int maxCountPerDay;
         public BuySellPage(OperationType type)
         {
@@ -42,8 +42,8 @@ namespace ExchangeOfficeApp
             _changingPriceService = new ChangingPriceService();
             _receiptService = new ReceiptService();
 
-            buyPrice = Convert.ToDouble(_changingPriceService.GetLastChangingBuyPrice());
-            sellPrice = Convert.ToDouble(_changingPriceService.GetLastChangingSellPrice());
+            buyPrice = Convert.ToDouble(_changingPriceService.GetLastChangingBuyPriceByCurrencyType(CurrencyType.USD));
+            sellPrice = Convert.ToDouble(_changingPriceService.GetLastChangingSellPriceByCurrencyType(CurrencyType.USD));
             maxCountPerDay = Convert.ToInt32(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).AppSettings.Settings["MaxCurrencyCountPerDay"].Value);
 
             CurrencyTypeComboBox.Items.Add(CurrencyType.EUR);
@@ -77,12 +77,20 @@ namespace ExchangeOfficeApp
             try
             {
                 var count = Convert.ToInt32(this.CountInput.Text);
+                var amount = 
                 this.PriceInput.Text = $"{count * (_type == OperationType.BUY ? buyPrice : sellPrice)}";
             }
             catch(Exception)
             {
                 this.PriceInput.Text = "0";
             }
+        }
+
+        private void CurrencyTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            buyPrice = Convert.ToDouble(_changingPriceService.GetLastChangingBuyPriceByCurrencyType((CurrencyType)CurrencyTypeComboBox.SelectedItem));
+            sellPrice = Convert.ToDouble(_changingPriceService.GetLastChangingSellPriceByCurrencyType((CurrencyType)CurrencyTypeComboBox.SelectedItem));
+            this.MainLabel.Content = $"{_type} page. Course: {(_type == OperationType.BUY ? buyPrice : sellPrice)}";
         }
     }
 }
