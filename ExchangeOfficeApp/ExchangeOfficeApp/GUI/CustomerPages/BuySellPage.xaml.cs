@@ -34,6 +34,7 @@ namespace ExchangeOfficeApp
         private double buyPrice;
         private double sellPrice;
         private readonly int maxCountPerDay;
+        private string _count;
         public BuySellPage(OperationType type)
         {
             InitializeComponent();
@@ -77,8 +78,17 @@ namespace ExchangeOfficeApp
             try
             {
                 var count = Convert.ToInt32(this.CountInput.Text);
-                var amount = 
-                this.PriceInput.Text = $"{count * (_type == OperationType.BUY ? buyPrice : sellPrice)}";
+                if (count <= maxCountPerDay)
+                {
+                    this.PriceInput.Text = $"{count * (_type == OperationType.BUY ? buyPrice : sellPrice)}";
+                    _count = this.CountInput.Text;
+                }
+                else
+                {
+                    MessageBox.Show(this, $"Can't {_type} more than {maxCountPerDay}", "Error", MessageBoxButton.OK);
+                    this.CountInput.Text = _count;
+                }
+                
             }
             catch(Exception)
             {
