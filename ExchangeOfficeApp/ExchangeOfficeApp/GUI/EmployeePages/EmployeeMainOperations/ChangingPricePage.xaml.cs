@@ -33,8 +33,13 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
 
             _changingPriceService = new ChangingPriceService();
 
-            oldBuyPriceLabel.Content += _changingPriceService.GetLastChangingBuyPrice() + " BYN";
-            oldSellPriceLabel.Content += _changingPriceService.GetLastChangingSellPrice() + " BYN";
+            CurrencyTypeComboBox.Items.Add(CurrencyType.EUR);
+            CurrencyTypeComboBox.Items.Add(CurrencyType.USD);
+            CurrencyTypeComboBox.Items.Add(CurrencyType.RUB);
+            CurrencyTypeComboBox.SelectedItem = CurrencyType.USD;
+
+            oldBuyPriceLabel.Content = "Old buy price: " + _changingPriceService.GetLastChangingBuyPriceByCurrencyType((CurrencyType)CurrencyTypeComboBox.SelectedItem) + " BYN";
+            oldSellPriceLabel.Content = "Old sell price: " + _changingPriceService.GetLastChangingSellPriceByCurrencyType((CurrencyType)CurrencyTypeComboBox.SelectedItem) + " BYN";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -43,13 +48,19 @@ namespace ExchangeOfficeApp.EmployeePages.EmployeeMainOperations
             var newSellPrice = Convert.ToDouble(this.NewSellPriceTextBox.Text);
             var newPrice = new ChangePrice
             {
-                CurrencyType = CurrencyType.USD,
+                CurrencyType = (CurrencyType)CurrencyTypeComboBox.SelectedItem,
                 DateTime = DateTime.Now,
                 BuyPrice = newBuyPrice,
                 SellPrice = newSellPrice
             };
             _changingPriceService.Add(newPrice);
             this.Close();
+        }
+
+        private void CurrencyTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            oldBuyPriceLabel.Content = "Old buy price: " +  _changingPriceService.GetLastChangingBuyPriceByCurrencyType((CurrencyType)CurrencyTypeComboBox.SelectedItem) + " BYN";
+            oldSellPriceLabel.Content = "Old sell price: " + _changingPriceService.GetLastChangingSellPriceByCurrencyType((CurrencyType)CurrencyTypeComboBox.SelectedItem) + " BYN";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ExchangeOfficeApp.Models;
+﻿using ExchangeOfficeApp.Enums;
+using ExchangeOfficeApp.Models;
 using ExchangeOfficeApp.Repository;
 using ExchangeOfficeRepository.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,11 @@ namespace ExchangeOfficeRepository.Repository
         public ChangePrice GetLastChangingPrices()
         {
             return _db.ChangingPrices.Any() ? _db.ChangingPrices.OrderBy(i => i.Id).Last() : null;
+        }
+
+        public ChangePrice GetLastChangingPricesByCurrencyType(CurrencyType currencyType)
+        {
+            return _db.ChangingPrices.Any() ? _db.ChangingPrices.OrderBy(i => i.Id).Where(i => i.CurrencyType == currencyType).Last() : null;
         }
 
         public void Add(ChangePrice changePrice)

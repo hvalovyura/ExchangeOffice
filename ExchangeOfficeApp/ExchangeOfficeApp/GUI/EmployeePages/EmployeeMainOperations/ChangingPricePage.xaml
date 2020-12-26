@@ -14,5 +14,6 @@
         <TextBox x:Name="NewBuyPriceTextBox" Text="" TextWrapping="Wrap" Margin="400,154,111,231"/>
         <TextBox x:Name="NewSellPriceTextBox" Text="" TextWrapping="Wrap" Margin="400,284,111,98"/>
         <Button Content="Submit" Margin="202,367,250,10" FontSize="25" Click="Button_Click"/>
+        <ComboBox x:Name="CurrencyTypeComboBox" Margin="32,29,679,362" SelectionChanged="CurrencyTypeComboBox_SelectionChanged"/>
     </Grid>
 </Window>

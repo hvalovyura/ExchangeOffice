@@ -1,4 +1,5 @@
-﻿using ExchangeOfficeApp.Models;
+﻿using ExchangeOfficeApp.Enums;
+using ExchangeOfficeApp.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,8 @@ namespace ExchangeOfficeServices.Services.Interfaces
     {
         public string GetLastChangingBuyPrice();
         public string GetLastChangingSellPrice();
+        public string GetLastChangingSellPriceByCurrencyType(CurrencyType currencyType);
+        public string GetLastChangingBuyPriceByCurrencyType(CurrencyType currencyType);
         public BindingList<ChangePrice> GetAllChangingPrices();
         public void Add(ChangePrice changePrice);
     }
