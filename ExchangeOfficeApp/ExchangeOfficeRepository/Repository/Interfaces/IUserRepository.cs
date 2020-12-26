@@ -9,5 +9,6 @@ namespace ExchangeOfficeRepository.Repository.Interfaces
     public interface IUserRepository : IRepository
     {
         public IEnumerable<User> GetAllUsers();
+        public void Add(string username, string password);
     }
 }

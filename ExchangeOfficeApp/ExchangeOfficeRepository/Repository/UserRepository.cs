@@ -24,6 +24,17 @@ namespace ExchangeOfficeRepository.Repository
             return _db.Users.Any() ? _db.Users.OrderBy(u => u.Id) : null;
         }
 
+        public void Add(string username, string password)
+        {
+            var user = new User
+            {
+                Username = username,
+                Password = password
+            };
+            _db.Add(user);
+            SaveChanges();
+        }
+
         public void SaveChanges()
         {
             _db.SaveChanges();
